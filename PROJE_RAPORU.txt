@@ -1,0 +1,176 @@
+                                    T.C.
+                          DOKUZ EYLÜL ÜNİVERSİTESİ
+                    İKTİSADİ VE İDARİ BİLİMLER FAKÜLTESİ
+                       YÖNETİM BİLİŞİM SİSTEMLERİ BÖLÜMÜ
+                               DÖNEM PROJESİ
+
+
+
+                                  YBS 3015
+                          KARAR DESTEK SİSTEMLERİ
+
+          Kitabevi Sektöründe Şube Performans Takibi ve Stratejik
+            Karar Almaya Yönelik Karar Destek Sistemi Tasarımı
+
+
+
+                                 2022469067
+                                 Kerem Ören
+
+
+
+                               Öğretim Üyesi
+                           Prof.Dr. Vahap TECİM
+
+
+
+                               İZMİR   2025
+
+
+================================================================================
+
+ÖZET
+
+Bu çalışmada, kitabevi sektöründe faaliyet gösteren işletmeler için şube performans takibi ve stratejik karar almayı desteklemek amacıyla geliştirilen bir Karar Destek Sistemi (KDS) ele alınmıştır. İzmir'de faaliyet gösteren 12 şubeli İşler Kitabevi zincirinin satış, gider ve kârlılık verilerini analiz ederek yöneticilere karar desteği sunan bir sistem geliştirilmiştir. Sistem, web tabanlı bir mimari ile tasarlanmış olup; gösterge paneli, şube karşılaştırma, risk analizi, senaryo simülasyonu ve harita görünümü modüllerini içermektedir. Veritabanında trigger mekanizması kullanılarak otomatik gider uyarı sistemi implementeedimiştir. Sistem sayesinde yöneticiler, veri odaklı ve daha doğru kararlar alabilmekte, zararlı şubelerin erken tespiti yapılabilmektedir.
+
+
+GİRİŞ
+
+Rekabetin yoğun olduğu perakende sektöründe, doğru zamanda doğru kararlar almak işletmeler açısından kritik öneme sahiptir. Kitabevi sektörü, özellikle e-ticaretin gelişmesiyle birlikte büyük dönüşümler yaşamaktadır. Çoklu şube yönetimi, her şubenin farklı performans göstergeleri nedeniyle karar verme açısından karmaşık bir yapı oluşturmaktadır.
+
+Karar Destek Sistemleri (KDS), yöneticilerin yapılandırılmış ve yarı yapılandırılmış problemlerde daha sağlıklı kararlar almasını sağlayan bilgi sistemleridir. Bu proje kapsamında geliştirilen İşler Kitabevi KDS, şube performanslarını izleyerek ve analiz ederek, yöneticilerin stratejik kararlarını desteklemeyi amaçlamaktadır.
+
+
+BÖLÜM 1: PROBLEMİN TANIMI VE İNCELENMESİ
+
+1.1 Problemin Tanımı
+
+İşler Kitabevi'nin İzmir'deki 12 şubesinin yönetiminde aşağıdaki sorunlar tespit edilmiştir:
+
+• Satış ve gider verileri farklı kaynaklarda tutulmakta, bütünleşik bir görünüm sağlanamamaktadır
+• Performans raporları manuel olarak hazırlandığından güncel verilere erişim gecikmektedir
+• Şubeler arası performans karşılaştırması yapılamamaktadır
+• Zarar eden veya risk altındaki şubelerin erken tespiti yapılamamaktadır
+• Gelecek projeksiyonları için senaryo analizi yapılamamaktadır
+
+
+1.2 Problemin Önemi
+
+• Zarar eden şubelerin geç tespit edilmesi nedeniyle finansal kayıplar
+• Yanlış yatırım kararları nedeniyle kaynak israfı
+• Fırsat maliyetlerinin artması
+• Rekabet gücünün azalması
+
+
+1.3 Mevcut Durum Analizi
+
+Geleneksel yöntemlerde şube performans takibi çoğunlukla geçmiş dönem verilerine ve manuel raporlara dayalı olmaktadır. Ancak bu yaklaşım, değişen pazar koşullarını ve güncel verileri yeterince yansıtamamaktadır. Bu durum, karar destek sistemlerine olan ihtiyacı artırmaktadır.
+
+
+BÖLÜM 2: YÖNTEM – METODOLOJİ
+
+Bu çalışmada geliştirilen İşler Kitabevi Karar Destek Sistemi aşağıdaki aşamalardan oluşmaktadır:
+
+• Şube satış ve gider verilerinin toplanması
+• Verilerin temizlenmesi ve analiz edilmesi
+• Performans göstergelerinin belirlenmesi
+• Risk skorlamasının yapılması
+• Senaryo simülasyonu için modelleme
+
+Sistem geliştirme sürecinde web tabanlı bir mimari benimsenmiş, veri tabanı olarak MySQL kullanılmıştır. Analiz ve görselleştirme süreçlerinde grafiksel gösterimlerden yararlanılmıştır.
+
+Kullanılan Teknolojiler:
+
+• Frontend: React (Vite ile oluşturulmuş)
+• Backend: Node.js, Express.js
+• Veritabanı: MySQL (XAMPP üzerinde)
+• Harita Görselleştirme: Leaflet.js
+• Grafik Kütüphanesi: Chart.js
+• Kimlik Doğrulama: JWT (JSON Web Token), bcrypt
+
+Veritabanı Tasarımı:
+
+Sistemde 9 adet tablo bulunmaktadır:
+• users - Kullanıcı bilgileri
+• branches - Şube bilgileri
+• sales - Satış kayıtları
+• expenses - Gider kayıtları
+• decision_notes - Karar notları
+• decision_comments - Yorumlar
+• decision_votes - Oylar
+• population_districts - İlçe nüfus verileri
+• expense_alerts - Gider uyarıları (Trigger ile doldurulur)
+
+Trigger Mekanizması:
+
+Veritabanında 50.000 TL üzeri giderler için otomatik uyarı oluşturan trigger implementeedimiştir. Bu sayede yüksek giderler anında tespit edilmektedir.
+
+
+BÖLÜM 3: BULGULAR – UYGULAMA – YAZILIM
+
+İşler Kitabevi Karar Destek Sistemi üzerinden elde edilen bulgular, şube performanslarının izlenmesinde önemli bir rol oynamıştır. Grafikler aracılığıyla ürün bazlı satış trendleri izlenebilmekte, yöneticilere görsel destek sağlanmaktadır.
+
+Sistem sayesinde:
+
+• Kârlı ve zararlı şubeler anlık olarak belirlenmiştir
+• Risk altındaki şubeler tespit edilmiştir
+• Senaryo simülasyonu ile alternatif senaryolar oluşturulmuştur
+• Harita üzerinde şube performansları görselleştirilmiştir
+• Trigger ile yüksek giderler otomatik olarak raporlanmıştır
+
+Sistem Modülleri:
+
+1. Gösterge Paneli: KPI kartları, gelir/gider grafikleri, trend analizi
+2. Şube Karşılaştırma: 2-5 şube arasında performans karşılaştırması
+3. Risk Analizi: Şube risk skorları ve sınıflandırması
+4. Senaryo Simülatörü: Kira, maaş, gelir değişikliklerinin etkisi
+5. Harita Görünümü: İzmir haritası üzerinde şube dağılımı
+6. Tahminleme: Gelecek dönem satış tahminleri
+7. Grup Kararları: Yorum ve oylama sistemi
+8. Kullanıcı Yönetimi: Rol bazlı erişim kontrolü (Admin, Manager, Viewer)
+
+Bu sonuçlar, karar vericilerin daha hızlı ve doğru karar almasına katkı sağlamaktadır.
+
+
+SONUÇ
+
+Bu proje kapsamında geliştirilen İşler Kitabevi Karar Destek Sistemi, kitabevi sektöründe şube performans takibi ve stratejik karar almaya yönelik etkin çözümler sunmaktadır. Sistem, veri odaklı karar alma yaklaşımını destekleyerek işletmelerin operasyonel verimliliğini artırmaktadır.
+
+Veritabanı trigger mekanizması ile yüksek giderler otomatik olarak tespit edilmekte, yöneticiler uyarılmaktadır. Senaryo simülatörü ile alternatif senaryolar test edilebilmekte, risk analizi ile zarar riski taşıyan şubeler önceden belirlenebilmektedir.
+
+Gelecekte sistemin daha gelişmiş tahmin modelleri ve farklı veri kaynakları ile zenginleştirilmesi mümkündür.
+
+
+REFERANSLAR
+
+• Kitabevi sektörüne ait geçmiş dönem satış verileri ve şirket içi satış raporları
+• Web tabanlı karar destek sistemi geliştirme sürecinde kullanılan yazılım teknolojilerine ait dokümantasyonlar (Node.js, Express.js, MySQL, XAMPP)
+• React ve Vite dokümantasyonu (https://react.dev, https://vitejs.dev)
+• Leaflet.js harita kütüphanesi dokümantasyonu (https://leafletjs.com)
+• Chart.js grafik kütüphanesi dokümantasyonu (https://chartjs.org)
+• JWT kimlik doğrulama standartları (https://jwt.io)
+
+
+================================================================================
+
+EKRAN GÖRÜNTÜLERİ
+
+(Bu bölüme projenin ekran görüntüleri eklenecektir)
+
+Yönetici Girişi
+[Login ekranı görüntüsü]
+
+Ana Sayfa (Gösterge Paneli)
+[Dashboard ekranı görüntüsü]
+
+Şube Karşılaştırma
+[Şube karşılaştırma ekranı görüntüsü]
+
+Risk Analizi
+[Risk analizi ekranı görüntüsü]
+
+Senaryo Simülatörü
+[Senaryo simülatörü ekranı görüntüsü]
+
+Harita Görünümü
+[Harita görünümü ekranı görüntüsü]
